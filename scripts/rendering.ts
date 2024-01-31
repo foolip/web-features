@@ -1,0 +1,140 @@
+import winston from "winston";
+
+import features from '../index.js';
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.printf(({level, message}) => `${message}`)
+})
+
+if (process.argv.includes("--quiet")) {
+    logger.add(new winston.transports.Console({ level: 'info'}));
+} else {
+    logger.add(new winston.transports.Console({ level: 'verbose' }));
+}
+
+const burndown = [
+    'aborting',
+    'abs-sign',
+    'accent-color',
+    'animation-composition',
+    'appearance',
+    'aspect-ratio',
+    'autofill',
+    'backdrop-filter',
+    'background-clip-text',
+    'baseline-source',
+    'blocking-render',
+    'breaking-controls',
+    'calc-constants',
+    'cap',
+    'cascade-layers',
+    'check-visibility',
+    'clip-path',
+    'color-function',
+    'color-mix',
+    'color-scheme',
+    'colrv1',
+    'complex-nth',
+    'constructed-stylesheets',
+    'contain-intrinsic-size',
+    'contain-style',
+    'contain',
+    'container-queries',
+    'container-style-queries',
+    'content-visibility',
+    'css-properties-values',
+    'custom-elements',
+    'custom-properties',
+    'declarative-shadow-dom',
+    'details-name', // accordion
+    'details',
+    'dialog',
+    'dir-function',
+    'display-animation',
+    'display-contents',
+    'display-multiple',
+    'exp-functions',
+    'field-sizing',
+    'flexbox-gap',
+    'flexbox',
+    'focus-visible',
+    'font-face',
+    'font-optical-sizing',
+    'font-palette-animation',
+    'font-palette',
+    'font-synthesis',
+    'font-variant-alternates',
+    'forms',
+    'grid',
+    'has',
+    'hidden-until-found',
+    'ic',
+    'image-set',
+    'import-supports',
+    'individual-transforms',
+    'interactive-widget',
+    'intersection-observer',
+    'is',
+    'lab',
+    'last-baseline',
+    'lh',
+    'light-dark',
+    'line-clamp',
+    'linear-easing',
+    'media-query-nesting',
+    'media-query-or-not', // here I come
+    'media-query-range-syntax',
+    'min-max-clamp',
+    'motion-path',
+    'named-pages',
+    'nesting',
+    'not',
+    'oklab',
+    'overflow-shorthand',
+    'overlay',
+    'overscroll',
+    'popover',
+    'prefers-color-scheme',
+    'quotes',
+    'registered-custom-properties',
+    'relative-color',
+    'revert',
+    'root-font-units',
+    'round-mod-rem',
+    'scope',
+    'scroll-driven-animations',
+    'scroll-snap',
+    'scrollbar-color',
+    'scrollbar-width',
+    'scrollend',
+    'search',
+    'shadow-dom',
+    'show-picker-input',
+    'show-picker-select',
+    'slot',
+    'spelling-grammar-error',
+    'starting-style',
+    'subgrid',
+    'supports-selector',
+    'text-fragments',
+    'text-spacing-trim',
+    'text-wrap-balance',
+    'text-wrap-pretty',
+    'transforms2d',
+    'transforms3d',
+    'transition-behavior',
+    'trig-functions',
+    'user-pseudos',
+    'viewport-relative-unit-variants',
+    'where',
+];
+
+for (const id of burndown) {
+    const data = features[id];
+    if (data) {
+        logger.verbose(`- [${data.name.replaceAll('<', '&lt;')}](https://github.com/foolip/web-features/blob/rendering/feature-group-definitions/${id}.yml)`);
+    } else {
+        logger.verbose(`- ${id}`);
+    }
+}
