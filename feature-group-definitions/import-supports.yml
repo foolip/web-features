@@ -1,0 +1,4 @@
+name: supports() condition for @import
+spec: https://todo.spec/
+compat_features:
+  - 
