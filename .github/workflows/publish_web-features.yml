@@ -21,7 +21,7 @@ jobs:
       - run: npm ci
       - run: npm test
   artifacts:
-    if: github.repository == 'web-platform-dx/web-features'
+    if: github.repository == 'foolip/web-features'
     runs-on: ubuntu-latest
     needs: "test"
     steps:
