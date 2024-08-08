@@ -35,6 +35,8 @@ jobs:
       - run: npm run build
       - run: npm run build:extended
       - run: gh release upload "$GITHUB_REF_NAME" packages/web-features/data.json schemas/data.schema.json data.extended.json
+        env:
+          GH_TOKEN: ${{ github.token }}
   publish:
     if: github.repository == 'web-platform-dx/web-features'
     runs-on: ubuntu-latest
