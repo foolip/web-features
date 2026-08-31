@@ -1,0 +1,6 @@
+draft_date: 2026-08-31
+name: Web Linking
+description: TODO
+spec: https://httpwg.org/specs/rfc8288.html
+compat_features:
+  - http.headers.Link
